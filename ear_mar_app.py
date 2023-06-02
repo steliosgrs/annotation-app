@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
-import datetime
 from animations_app import main_plot
+import datetime
 import time
 import gc
 import logging

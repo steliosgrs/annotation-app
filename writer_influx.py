@@ -1,15 +1,10 @@
-import os
 from uuid import uuid1 as uid
-import datetime
-from pathlib import Path
 from dotenv import dotenv_values
-from collections import OrderedDict
-from csv import DictReader
 from datetime import datetime as dt
 
 import pandas as pd
-from influxdb_client import WritePrecision, InfluxDBClient, Point
-from influxdb_client.client.write_api import SYNCHRONOUS, PointSettings, WriteOptions, ASYNCHRONOUS
+from influxdb_client import InfluxDBClient, Point
+from influxdb_client.client.write_api import SYNCHRONOUS
 
 config = dotenv_values(".env")
 token = config["INFLUXDB_TOKEN"]
