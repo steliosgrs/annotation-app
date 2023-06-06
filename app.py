@@ -39,6 +39,7 @@ if __name__ == '__main__':
 
     ear_mar_extractor(video_dir, fps, csv_dir, export_csv, export_video, export_animations, video_with_animations, segments, export_landmarks)
 
+    # Influx
     """
     ear, mar, timestamps = fetch_data("2023-05-19T12:14:15Z","x","EAR-MAR")
     print(len(ear), len(mar))
