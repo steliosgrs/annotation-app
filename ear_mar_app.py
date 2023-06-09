@@ -158,10 +158,11 @@ def frame_gen(chunk):
 	for frame in chunk:
 		yield frame
 
+logging.basicConfig(level=logging.INFO ,filename='annotation_app.log', filemode='w')
+
 def ear_mar_extractor(video_dir, fps, output_dir, export_csv = False, export_video = False, 
 					export_animations = False, video_with_animations = False, 
 					segmented = False, export_landmarks = False  ):
-	logging.basicConfig(level=logging.INFO ,filename='annotation_app.log', filemode='w')
 	
 	WIDTH = 480
 	HEIGHT = 480
@@ -217,7 +218,7 @@ def ear_mar_extractor(video_dir, fps, output_dir, export_csv = False, export_vid
 					# print(vid.get_avg_fps())
 					vid.skip_frames(step)
 					
-					timestamps = np.arange(len(chunk_inx)) * (1 / (fps)) #[0., 0.05, 0.1, 0.15, 0.2, 0.25, 0.3]
+					timestamps = np.arange(len(chunk_inx)) * (1 / (fps)) # [0., 0.05, 0.1, 0.15, 0.2, 0.25, 0.3]
 					
 					if i != 0 :
 						time = last_chuck_timestamp
