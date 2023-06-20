@@ -1,13 +1,17 @@
+import argparse
 from pathlib import Path
-
+import os
+"""
 import pandas as pd
 
 from ear_mar_app import ear_mar_extractor
+from writer_influx import fetch_data, send_data, delete_data
+
 from perclos import Perclos
 from plot_perclos import show_perclos
 from pom import POM
 from plot_pom import show_pom
-from writer_influx import fetch_data, send_data, delete_data
+
 # CSV EAR - MAR
 csv_dir = 'artifacts_app/'
 
@@ -21,9 +25,23 @@ segm_out = 'output/seg/'
 video_dir = 'uta/'
 landmarks_vid = 'landmarks/'
 
-if __name__ == '__main__':
+"""
 
-    fps = 20
+if __name__ == '__main__':
+    arg_parse = argparse.ArgumentParser()
+    arg_parse.add_argument("--video_dir", help="Directory of videos", default='./videos')
+    arg_parse.add_argument("--output_dir", help="Directory of output csv", default='./csv')
+    arg_parse.add_argument("fps", help="FPS", default='20', type=int)
+
+    args = arg_parse.parse_args()
+    fps = args.fps
+    video_dir = args.video_dir
+    # video_dir = Path(args.video_dir)
+    output_dir = Path(args.output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    print(fps)
+
+    # fps = 20
     segments = True
     export_video = False
     export_landmarks = False
@@ -34,10 +52,13 @@ if __name__ == '__main__':
 
     export_perclos = False
     export_pom = False
+    for root, dirs, files in os.walk(video_dir):
+        for j, video_filename in enumerate(files):
+            print(video_filename)
 
-    folders = [landmarks_vid, per_out, pom_out, segm_out]
+    # folders = [landmarks_vid, per_out, pom_out, segm_out]
 
-    ear_mar_extractor(video_dir, fps, csv_dir, export_csv, export_video, export_animations, video_with_animations, segments, export_landmarks)
+    # ear_mar_extractor(video_dir, fps, csv_dir, export_csv, export_video, export_animations, video_with_animations, segments, export_landmarks)
 
     # Influx
     """
